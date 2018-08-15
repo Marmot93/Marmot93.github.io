@@ -43,7 +43,7 @@
     
     <title>
         
-            归档: 2018/1 | 
+            redis笔记 | 
         
         Marmot
     </title>
@@ -54,7 +54,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="博客 github golang python">
-    <meta name="keywords" content="">
+    <meta name="keywords" content=",redis">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -215,7 +215,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Marmot">
-    <meta name="msapplication-starturl" content="http://yoursite.com/archives/2018/01/">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2018/08/15/redis/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Marmot">
@@ -230,13 +230,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://yoursite.com/archives/2018/01/">
+    <meta property="og:url" content="http://yoursite.com/2018/08/15/redis/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2018/1 | Marmot">
+    <meta property="og:title" content="redis笔记 | Marmot">
     <meta property="og:image" content="http://oor3iu2zw.bkt.clouddn.com/header_01.jpeg">
     <meta property="og:description" content="博客 github golang python">
-    
+    <meta property="og:article:tag" content="redis"> 
 
+    
+        <meta property="article:published_time" content="Wed Aug 15 2018 11:03:12 GMT+0800">
+        <meta property="article:modified_time" content="Wed Aug 15 2018 11:37:37 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -244,13 +247,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/archives/2018/01/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2018/08/15/redis/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2018/08/15/redis/index.html",
+    "headline": "redis笔记",
+    "datePublished": "Wed Aug 15 2018 11:03:12 GMT+0800",
+    "dateModified": "Wed Aug 15 2018 11:37:37 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Marmot",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://oor3iu2zw.bkt.clouddn.com/header_01.jpeg"
+        },
+        "description": "Now is better than never"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Marmot",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "http://oor3iu2zw.bkt.clouddn.com/header_01.jpeg"
+        }
+    },
+    "keywords": ",redis",
+    "description": "博客 github golang python",
+}
+</script>
 
 
     
@@ -284,207 +317,237 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
-        
-            
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HyperLogLog"><span class="post-toc-number">1.</span> <span class="post-toc-text">HyperLogLog</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Bloom-Filter"><span class="post-toc-number">2.</span> <span class="post-toc-text">Bloom Filter</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
                 
-                    <!-- Paradox Thumbnail -->
-                    <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/06/06/杂记2018-06-09/"><span>[Top]</span>杂记2018/06~09</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/06/06/杂记2018-06-09/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="http://oor3iu2zw.bkt.clouddn.com/header_01.jpeg" width="44px" height="44px" alt="Marmot's avatar">
-            </div>
-            <div>
-                <strong>Marmot</strong>
-                <span>6月 06, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-                
-                
-            
-                
-                    <!-- Paradox Thumbnail -->
-                    <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/02/23/杂记/"><span>[Top]</span>杂记2018/02~05</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            撸代码和日常的流水账 
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/02/23/杂记/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="http://oor3iu2zw.bkt.clouddn.com/header_01.jpeg" width="44px" height="44px" alt="Marmot's avatar">
-            </div>
-            <div>
-                <strong>Marmot</strong>
-                <span>2月 23, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-                
-                
-            
-        
-    
-
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/01/23/python_django_middleware/">Python Django middleware</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            在Django公处理请求参数，参数和文件整理到request.data和request.files
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/01/23/python_django_middleware/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="http://oor3iu2zw.bkt.clouddn.com/header_01.jpeg" width="44px" height="44px" alt="Marmot's avatar">
-            </div>
-            <div>
-                <strong>Marmot</strong>
-                <span>1月 23, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                redis笔记
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="http://oor3iu2zw.bkt.clouddn.com/header_01.jpeg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Marmot</strong>
+        <span>8月 15, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=http://yoursite.com/2018/08/15/redis/">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/redis/">redis</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=redis笔记&url=http://yoursite.com/2018/08/15/redis/index.html&pic=http://yoursite.comhttp://oor3iu2zw.bkt.clouddn.com/header_01.jpeg&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=redis笔记&url=http://yoursite.com/2018/08/15/redis/index.html&via=Marmot" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/08/15/redis/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/08/15/redis/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a>HyperLogLog</h2><p>HyperLogLog UV数据统计 下低位连续零位的最大长度 k，通过这个 k 值可以估算出随机数的数量 </p>
+<h2 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h2><p>判断某个对象是否存在时 存在的一定存在，不存在的可能存在 使用大型无偏hash函数</p>
+<p>##限流<br>限制用户一段时间操作频率<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> redis</span><br><span class="line"></span><br><span class="line">client = redis.StrictRedis()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_action_allowed</span><span class="params">(user_id, action_key, period, max_count)</span>:</span></span><br><span class="line">    key = <span class="string">'hist:%s:%s'</span> % (user_id, action_key)</span><br><span class="line">    now_ts = int(time.time() * <span class="number">1000</span>)  <span class="comment"># 毫秒时间戳</span></span><br><span class="line">    <span class="keyword">with</span> client.pipeline() <span class="keyword">as</span> pipe:  <span class="comment"># client 是 StrictRedis 实例</span></span><br><span class="line">        <span class="comment"># 记录行为</span></span><br><span class="line">        pipe.zadd(key, now_ts, now_ts)  <span class="comment"># value 和 score 都使用毫秒时间戳</span></span><br><span class="line">        <span class="comment"># 移除时间窗口之前的行为记录，剩下的都是时间窗口内的</span></span><br><span class="line">        pipe.zremrangebyscore(key, <span class="number">0</span>, now_ts - period * <span class="number">1000</span>)</span><br><span class="line">        <span class="comment"># 获取窗口内的行为数量</span></span><br><span class="line">        pipe.zcard(key)</span><br><span class="line">        <span class="comment"># 设置 zset 过期时间，避免冷用户持续占用内存</span></span><br><span class="line">        <span class="comment"># 过期时间应该等于时间窗口的长度，再多宽限 1s</span></span><br><span class="line">        pipe.expire(key, period + <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 批量执行</span></span><br><span class="line">        _, _, current_count, _ = pipe.execute()</span><br><span class="line">    <span class="comment"># 比较数量是否超标</span></span><br><span class="line">    <span class="keyword">return</span> current_count &lt;= max_count</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20</span>):</span><br><span class="line">    print(is_action_allowed(<span class="string">"laoqian"</span>, <span class="string">"reply"</span>, <span class="number">60</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure></p>
+<p>漏斗限流<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Funnel</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, capacity, leaking_rate)</span>:</span></span><br><span class="line">        self.capacity = capacity  <span class="comment"># 漏斗容量</span></span><br><span class="line">        self.leaking_rate = leaking_rate  <span class="comment"># 漏嘴流水速率</span></span><br><span class="line">        self.left_quota = capacity  <span class="comment"># 漏斗剩余空间</span></span><br><span class="line">        self.leaking_ts = time.time()  <span class="comment"># 上一次漏水时间</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_space</span><span class="params">(self)</span>:</span></span><br><span class="line">        now_ts = time.time()</span><br><span class="line">        delta_ts = now_ts - self.leaking_ts  <span class="comment"># 距离上一次漏水过去了多久</span></span><br><span class="line">        delta_quota = delta_ts * self.leaking_rate  <span class="comment"># 又可以腾出不少空间了</span></span><br><span class="line">        <span class="keyword">if</span> delta_quota &lt; <span class="number">1</span>:  <span class="comment"># 腾的空间太少，那就等下次吧</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.left_quota += delta_quota  <span class="comment"># 增加剩余空间</span></span><br><span class="line">        self.leaking_ts = now_ts  <span class="comment"># 记录漏水时间</span></span><br><span class="line">        <span class="keyword">if</span> self.left_quota &gt; self.capacity:  <span class="comment"># 剩余空间不得高于容量</span></span><br><span class="line">            self.left_quota = self.capacity</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">watering</span><span class="params">(self, quota)</span>:</span></span><br><span class="line">        self.make_space()</span><br><span class="line">        <span class="keyword">if</span> self.left_quota &gt;= quota:  <span class="comment"># 判断剩余空间是否足够</span></span><br><span class="line">            self.left_quota -= quota</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">funnels = &#123;&#125;  <span class="comment"># 所有的漏斗</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># capacity  漏斗容量</span></span><br><span class="line"><span class="comment"># leaking_rate 漏嘴流水速率 quota/s</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_action_allowed</span><span class="params">(user_id, action_key, capacity, leaking_rate)</span>:</span></span><br><span class="line">    key = <span class="string">'%s:%s'</span> % (user_id, action_key)</span><br><span class="line">    funnel = funnels.get(key)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> funnel:</span><br><span class="line">        funnel = Funnel(capacity, leaking_rate)</span><br><span class="line">        funnels[key] = funnel</span><br><span class="line">    <span class="keyword">return</span> funnel.watering(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20</span>):</span><br><span class="line">    print(is_action_allowed(<span class="string">'laoqian'</span>, <span class="string">'reply'</span>, <span class="number">15</span>, <span class="number">0.5</span>))</span><br></pre></td></tr></table></figure></p>
+<p>####redis中直接使用(需要安装redis-cell)<br><code>cl.throttle user:reply 15 30 60 1</code><br>用户回复 容量15 30次操作60s 需要容量1可选参数</p>
+<p>##GeoHash（附近的**）<br>在 Redis 的集群环境中，集合可能会从一个节点迁移到另一个节点，如果单个 key 的数据过大，会对集群的迁移工作造成较大的影响，<br>在集群环境中单个 key 对应的数据量不宜超过 1M，否则会导致集群迁移出现卡顿现象，影响线上服务的正常运行，如果数据量过亿甚至更大，<br>就需要对 Geo 数据进行拆分，按国家拆分、按省拆分，按市拆分，在人口特大城市甚至可以按区拆分<br>建议 Geo 的数据使用单独的 Redis 实例部署，不使用集群环境  </p>
+<p>geoadd 指令携带集合名称以及多个经纬度名称三元组，注意这里可以加入多个三元组<br>geodist 指令可以用来计算两个元素之间的距离，携带集合名称、2 个名称和距离单位<br>geopos 指令可以获取集合中任意元素的经纬度坐标，可以一次获取多个<br>geohash 可以获取元素的经纬度编码字符串<br>georadiusbymember 指令是最为关键的指令，它可以用来查询指定元素附近的其它元素，三个可选参数 withcoord <code>withdist</code> withhash 用来携带附加参<br>georadius 根据坐标值来查询附近的元素<br>zrem key member 删除  </p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/06/06/杂记2018-06-09/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
