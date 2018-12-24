@@ -239,7 +239,7 @@
 
     
         <meta property="article:published_time" content="Thu Oct 11 2018 15:04:59 GMT+0800">
-        <meta property="article:modified_time" content="Tue Nov 20 2018 22:08:41 GMT+0800">
+        <meta property="article:modified_time" content="Mon Dec 24 2018 18:51:02 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -262,7 +262,7 @@
     "mainEntityOfPage": "http://yoursite.com/2018/10/11/杂记2018-10-12/index.html",
     "headline": "杂记2018/10-12",
     "datePublished": "Thu Oct 11 2018 15:04:59 GMT+0800",
-    "dateModified": "Tue Nov 20 2018 22:08:41 GMT+0800",
+    "dateModified": "Mon Dec 24 2018 18:51:02 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Marmot",
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2018-11-20"><span class="post-toc-number">1.</span> <span class="post-toc-text">2018-11-20</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2018-11-09"><span class="post-toc-number">2.</span> <span class="post-toc-text">2018-11-09</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2018-10-11"><span class="post-toc-number">3.</span> <span class="post-toc-text">2018-10-11</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2018-12-24"><span class="post-toc-number">1.</span> <span class="post-toc-text">2018-12-24</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#关于预编译"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">关于预编译</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2018-11-20"><span class="post-toc-number">2.</span> <span class="post-toc-text">2018-11-20</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2018-11-09"><span class="post-toc-number">3.</span> <span class="post-toc-text">2018-11-09</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2018-10-11"><span class="post-toc-number">4.</span> <span class="post-toc-text">2018-10-11</span></a></li></ol>
     </ul>
     
 
@@ -502,7 +502,15 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="2018-11-20"><a href="#2018-11-20" class="headerlink" title="2018-11-20"></a>2018-11-20</h3><p>###《古典密码学》</p>
+        <h3 id="2018-12-24"><a href="#2018-12-24" class="headerlink" title="2018-12-24"></a>2018-12-24</h3><p>赶项目，加上泰国玩了一圈，写还是得继续得  </p>
+<h4 id="关于预编译"><a href="#关于预编译" class="headerlink" title="关于预编译"></a>关于预编译</h4><ol>
+<li>Prepared语句只在session的整个生命周期中存在，一旦session结束，Prepared语句也不存在了。如果下次再使用需重新创建。</li>
+<li>Prepared语句不能在多个并发的client中共有。</li>
+<li>prepared语句可以通过DEALLOCATE命令清除。</li>
+<li>当前session的prepared语句：select * from pg_prepared_statements;<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">cursor = connections[<span class="string">'timescale'</span>].cursor()</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    statement = <span class="string">f"""</span></span><br><span class="line"><span class="string">                PREPARE q(text) AS</span></span><br><span class="line"><span class="string">                SELECT <span class="subst">&#123;<span class="string">','</span>.join(fields)&#125;</span> FROM <span class="subst">&#123;tb_name&#125;</span></span></span><br><span class="line"><span class="string">                WHERE <span class="subst">&#123;tb_name&#125;</span>.timestamp &gt;= to_timestamp($1, 'yyyy-MM-dd hh24:mi:ss') - interval '1 minutes'</span></span><br><span class="line"><span class="string">                ORDER BY <span class="subst">&#123;tb_name&#125;</span>.timestamp</span></span><br><span class="line"><span class="string">                limit 1;</span></span><br><span class="line"><span class="string">                """</span></span><br><span class="line">    cursor.execute(statement)</span><br><span class="line">    <span class="keyword">while</span> t &lt;= end_time:</span><br><span class="line">        sql = <span class="string">f"""execute q('<span class="subst">&#123;t.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)&#125;</span>')"""</span></span><br><span class="line">        cursor.execute(sql)</span><br><span class="line">        r = cursor.fetchone()</span><br><span class="line">        <span class="keyword">if</span> r:</span><br><span class="line">            r = map(<span class="keyword">lambda</span> x: x <span class="keyword">if</span> <span class="keyword">not</span> isinstance(x, bool) <span class="keyword">else</span> int(x), r)</span><br><span class="line">            rows.append(list(r))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            x = [<span class="keyword">None</span>] * len(fields)</span><br><span class="line">            x[<span class="number">0</span>] = (t + timedelta(hours=<span class="number">8</span>)).strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">            rows.append(x)</span><br><span class="line">        t = t + timedelta(minutes=<span class="number">60</span>)</span><br><span class="line"><span class="comment"># 务必关闭数据库链接</span></span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    cursor.close()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="2018-11-20"><a href="#2018-11-20" class="headerlink" title="2018-11-20"></a>2018-11-20</h3><p>###《古典密码学》</p>
 <p>####凯撒密码（位移单词）<br>英文文本在足够量的情况下，单词使用频率是接近的，称为指纹，利用频率近似对比，可以有效的破解凯撒密码 </p>
 <p>####多表密码（根据规律位移单词）<br>使用多表密码可以淡化指纹，通过间隔取指纹对比，可以破解多表密码，但是需要耗费时间去确定间隔</p>
 <p>####使用随机性对密文进行加密</p>
