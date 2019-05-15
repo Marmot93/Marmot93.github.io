@@ -239,7 +239,7 @@
 
     
         <meta property="article:published_time" content="Tue Dec 25 2018 16:51:51 GMT+0800">
-        <meta property="article:modified_time" content="Tue Dec 25 2018 18:27:30 GMT+0800">
+        <meta property="article:modified_time" content="Wed May 15 2019 16:55:11 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -262,7 +262,7 @@
     "mainEntityOfPage": "http://yoursite.com/2018/12/25/数据处理优化/index.html",
     "headline": "数据处理优化",
     "datePublished": "Tue Dec 25 2018 16:51:51 GMT+0800",
-    "dateModified": "Tue Dec 25 2018 18:27:30 GMT+0800",
+    "dateModified": "Wed May 15 2019 16:55:11 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Marmot",
@@ -502,7 +502,7 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>最近都在处理数据哭优化方面的问题</p>
+        <p>最近都在处理数据优化方面的问题</p>
 <h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>更优秀的查询策略可以几十上百倍的提高效率</p>
 <h2 id="1，处理查询过慢的情况（50-s➡120ms）"><a href="#1，处理查询过慢的情况（50-s➡120ms）" class="headerlink" title="1，处理查询过慢的情况（50+s➡120ms）"></a>1，处理查询过慢的情况（50+s➡120ms）</h2><h3 id="起因1-因为同一个设备可能多次属于一个系统-子系统-，旧代码是查询出所有设备，然后根据设备属于的子系统，去递归出根系统然后分类"><a href="#起因1-因为同一个设备可能多次属于一个系统-子系统-，旧代码是查询出所有设备，然后根据设备属于的子系统，去递归出根系统然后分类" class="headerlink" title="起因1:因为同一个设备可能多次属于一个系统(子系统)，旧代码是查询出所有设备，然后根据设备属于的子系统，去递归出根系统然后分类"></a>起因1:因为同一个设备可能多次属于一个系统(子系统)，旧代码是查询出所有设备，然后根据设备属于的子系统，去递归出根系统然后分类</h3><h3 id="解决方案1："><a href="#解决方案1：" class="headerlink" title="解决方案1："></a>解决方案1：</h3><p>采用反向查询的策略，根据根系统查找设备，然后递归子系统查找设备，然后去重返回</p>
 <h3 id="起因2：如果设备数量增多，递归的多次查询设备表，由于设备表本身字段旧多，多次查询的每一次都会很慢，加上查询出来之后还要去重，会指数级别的变慢"><a href="#起因2：如果设备数量增多，递归的多次查询设备表，由于设备表本身字段旧多，多次查询的每一次都会很慢，加上查询出来之后还要去重，会指数级别的变慢" class="headerlink" title="起因2：如果设备数量增多，递归的多次查询设备表，由于设备表本身字段旧多，多次查询的每一次都会很慢，加上查询出来之后还要去重，会指数级别的变慢"></a>起因2：如果设备数量增多，递归的多次查询设备表，由于设备表本身字段旧多，多次查询的每一次都会很慢，加上查询出来之后还要去重，会指数级别的变慢</h3><h3 id="解决方案2："><a href="#解决方案2：" class="headerlink" title="解决方案2："></a>解决方案2：</h3><p>递归查询系统及子系统的id，然后根据系统id去关系表中去重查询（select DISTINCT equipment_id）设备id,再更具设备id，查询字段较多的设备表，<br>能较大的提高性能，同时能做到数据库直接分页</p>
