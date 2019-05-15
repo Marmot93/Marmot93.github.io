@@ -239,7 +239,7 @@
 
     
         <meta property="article:published_time" content="Wed May 15 2019 16:24:46 GMT+0800">
-        <meta property="article:modified_time" content="Wed May 15 2019 16:57:43 GMT+0800">
+        <meta property="article:modified_time" content="Wed May 15 2019 16:57:57 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -262,7 +262,7 @@
     "mainEntityOfPage": "http://yoursite.com/2019/05/15/关于锁/index.html",
     "headline": "关于锁",
     "datePublished": "Wed May 15 2019 16:24:46 GMT+0800",
-    "dateModified": "Wed May 15 2019 16:57:43 GMT+0800",
+    "dateModified": "Wed May 15 2019 16:57:57 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Marmot",
@@ -495,7 +495,7 @@
     
         <h2 id="场景1："><a href="#场景1：" class="headerlink" title="场景1："></a>场景1：</h2><p>出售商品对时候，可能会两个人同时对同一商品下单，虽然订单生成和商品状态的修改可以执行原子操作，但是可能会导致对同一商品同时执行了两个原子操作<br>ex:大学兼职对时候，遇到热门电影上映时，两个顾客同时购买了同一座位</p>
 <h3 id="解决方法：使用行锁"><a href="#解决方法：使用行锁" class="headerlink" title="解决方法：使用行锁"></a>解决方法：使用行锁</h3><p>可以执行<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TABLE_NAME <span class="keyword">WHERE</span> <span class="keyword">FOR</span> <span class="keyword">UPDATE</span>;</span><br></pre></td></tr></table></figure></p>
-<p>来对行进行锁定，，另外的线程执行 select for update 就会出现阻塞，直到原线程 commit 或 rollback。<br>在Django中可以使用 select_for_update 来对行进行锁定</p>
+<p>来对行进行锁定，另外的线程执行 select for update 就会出现阻塞，直到原线程 commit 或 rollback。<br>在Django中可以使用 select_for_update 来对行进行锁定</p>
 <hr>
 <h2 id="场景2"><a href="#场景2" class="headerlink" title="场景2"></a>场景2</h2><p>创建一个活动，活动编号需要在已有的活动编号上+1，但是自增字段已经用于主键了（为什么不直接用主键，为也不知道）<br>在并发较高的情况下，两个人同时创建活动，就可能出现同一活动编号</p>
 <h3 id="解决方法：使用表锁"><a href="#解决方法：使用表锁" class="headerlink" title="解决方法：使用表锁"></a>解决方法：使用表锁</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LOCK TABLES `TABLE_NAME` WRITE;</span><br><span class="line">-- do something</span><br><span class="line">UNLOCK TABLES;</span><br></pre></td></tr></table></figure>
